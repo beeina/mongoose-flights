@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<h2>Flight List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Airport</th>
+      <th>Flight No</th>
+      <th>Departs</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% flights.forEach(function(m) { %>
+      <tr>
+        <td><%= m.airline %></td>
+        <td><%= m.airport %></td>
+        <td><%= m.flightNo %></td>
+        <!-- finish the ternary expression to display 'Yes' or 'Nope' -->
+        <td><%= m.departs ? 'Yes' : 'Nope' %></td>
+      </tr>
+    <!-- Close the forEach using EJS here -->
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('../partials/header') %>

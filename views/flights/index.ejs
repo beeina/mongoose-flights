@@ -12,15 +12,14 @@
   </thead>
   <tbody>
     
-    <% flights.forEach(function(m) { %>
+    <% flights.forEach(function(f) { %>
       <tr>
-        <td><%= m.airline %></td>
-        <td><%= m.airport %></td>
-        <td><%= m.flightNo %></td>
-        <!-- finish the ternary expression to display 'Yes' or 'Nope' -->
-        <td><%= m.departs ? 'Yes' : 'Nope' %></td>
+        <td><%= f.airline %></td>
+        <td><%= f.airport %></td>
+        <td><%= f.flightNo %></td>
+        <td><%= f.departs %></td>
+        <td><a href="/flights/<%= f.id %>">DETAILS</a></td>
       </tr>
-    <!-- Close the forEach using EJS here -->
     <% }); %>
   </tbody>
 </table>

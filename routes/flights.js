@@ -10,4 +10,6 @@ router.get("/new", flightCtrl.new);
 
 router.post("/", flightCtrl.add);
 
+router.get('/:id', flightCtrl.show);
+
 module.exports = router;

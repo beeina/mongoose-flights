@@ -5,13 +5,10 @@ const Schema = mongoose.Schema;
 const destinationSchema = new Schema({
   airport: {
     type: String,
-    enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
   },
-  arrival: {
-    type: Date, 
-  }
+  arrival: Date,
 });
- 
 
 const flightSchema = new mongoose.Schema({
   airline: {
@@ -23,10 +20,20 @@ const flightSchema = new mongoose.Schema({
     enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
     default: "DEN",
   },
-  flightNo: {
+  flightNo: [
+    {
+      type: Number,
+      min: 10,
+      max: 9999,
+    },
+  ],
+  seat: {
+    type: String,
+    match: /[A-F][1-9]\d?/,
+  },
+  price: {
     type: Number,
-    min: 10,
-    max: 9999,
+    min: 0,
   },
   departs: {
     type: Date,
@@ -35,10 +42,7 @@ const flightSchema = new mongoose.Schema({
       return new Date().getFullYear();
     },
   },
-  destinations: [destinationSchema]
+  destinations: [destinationSchema],
 });
 
-
-
 module.exports = mongoose.model("Flight", flightSchema);
-

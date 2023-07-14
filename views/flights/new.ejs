@@ -27,7 +27,11 @@
     <input type="datetime-local" id="departs-time"
        name="departs">
   </label><br>
+  <label>Seat
+    <input name="seat" required pattern="[A-F][1-9]\d?">
+  </label><br>
   <button type="submit">Add Flight</button>
+  
 </form>
 <p><%= errorMsg %></p>
 

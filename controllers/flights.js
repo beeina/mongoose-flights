@@ -19,7 +19,10 @@ function newFlight(req, res) {
 
 async function show(req, res) {
   const flight = await Flight.findById(req.params.id);
-  res.render("flights/show", { title: "Flight Detail", flight });
+  const tickets = await Flight.find({ _id: { $nin: flight.ticket } }).sort(
+    "seat"
+  );
+  res.render("flights/show", { title: "Flight Detail", flight, tickets });
 }
 
 async function add(req, res) {

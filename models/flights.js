@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+
+
 const destinationSchema = new Schema({
   airport: {
     type: String,
@@ -27,14 +29,10 @@ const flightSchema = new mongoose.Schema({
       max: 9999,
     },
   ],
-  seat: {
-    type: String,
-    match: /[A-F][1-9]\d?/,
-  },
-  price: {
-    type: Number,
-    min: 0,
-  },
+  ticket: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Flight'
+  }],
   departs: {
     type: Date,
     required: true,

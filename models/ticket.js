@@ -1,14 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-const ticketchema = new Schema({
-    seat: {
-      type: String,
-      match: /[A-F][1-9]\d?/,
+const ticketSchema = new Schema({
+  seat: {
+    type: String,
+    match: /[A-F][1-9]\d?/,
+  },
+  price: {
+    type: Number,
+    min: 0,
+  },
+  flight: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Flight",
     },
-    price: {
-      type: Number,
-      min: 0,
-    }, 
-  });
+  ],
+});
+
+module.exports = mongoose.model("Ticket", ticketSchema);

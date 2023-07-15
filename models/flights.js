@@ -2,15 +2,17 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-
-
 const destinationSchema = new Schema({
   airport: {
     type: String,
     enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
   },
   arrival: Date,
-});
+},
+{
+  timestamps: true,
+}
+);
 
 const flightSchema = new mongoose.Schema({
   airline: {
@@ -29,16 +31,8 @@ const flightSchema = new mongoose.Schema({
       max: 9999,
     },
   ],
-  ticket: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Flight'
-  }],
   departs: {
     type: Date,
-    required: true,
-    default: function () {
-      return new Date().getFullYear();
-    },
   },
   destinations: [destinationSchema],
 });
